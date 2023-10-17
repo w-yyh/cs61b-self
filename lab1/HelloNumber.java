@@ -4,6 +4,7 @@ public class HelloNumber {
         while (x < 10) {
             System.out.print(x + " ");
             x = x + 1;
+            System.out.print("It is just a test.");
         }
     }
 }
