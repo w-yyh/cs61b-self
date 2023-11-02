@@ -10,7 +10,7 @@ public class NBody {
         int n = in.readInt();
         return n;
     }
-    static public Planet[] readp(String a){
+    static public Planet[] readPlanets(String a){
         int count = 0;
         In in = new In(a);
         int n = in.readInt();
@@ -34,7 +34,7 @@ public class NBody {
         double T = Double.parseDouble(args[0]);
         double dt = Double.parseDouble(args[1]);
         String filename = args[2];
-        Planet p[] = readp(filename);
+        Planet p[] = readPlanets(filename);
         double r = readRadius(filename);
         int n = readNum(filename);
 
