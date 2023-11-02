@@ -82,5 +82,6 @@ public class NBody {
                   p[i].xxPos, p[i].yyPos, p[i].xxVel,
                   p[i].yyVel, p[i].mass, p[i].imgFileName);   
 }
-    }
+    
+}
 }
