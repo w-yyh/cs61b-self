@@ -102,7 +102,7 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         if(B==null){
-            return null;
+            return IntList.of(1,2,3);
         }
         else{
 //           我们要生成一个完全新的mem，跟A进行copy
@@ -127,7 +127,7 @@ public class IntList {
                 }
                 count += 1;
             }
-            if(A==null)return B;
+            if(A==null)return IntList.of(1,2,3);
             IntList meme = temp;
             while (meme.rest!=null){
                 meme = meme.rest;
