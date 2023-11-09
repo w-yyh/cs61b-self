@@ -84,6 +84,7 @@ public class IntList {
         if(B==null){
             return null;
         }
+        if(A==null)return B;
         else{
             IntList mem = A;
             while(A.rest!=null){
@@ -126,7 +127,7 @@ public class IntList {
                 }
                 count += 1;
             }
-
+            if(A==null)return B;
             IntList meme = temp;
             while (meme.rest!=null){
                 meme = meme.rest;
