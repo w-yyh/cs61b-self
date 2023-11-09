@@ -81,8 +81,18 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if(B==null){
+            return null;
+        }
+        else{
+            IntList mem = A;
+            while(A.rest!=null){
+                A = A.rest;
+            }
+            A.rest = B;
+            return mem;
+        }
+
     }
 
     /**
@@ -90,8 +100,43 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if(B==null){
+            return null;
+        }
+        else{
+//           我们要生成一个完全新的mem，跟A进行copy
+
+            IntList prob = A;
+            IntList temp = new IntList(0,null);//保留着最开始的指针位置
+            IntList mem = temp;
+            int count = 0;
+//            这里的思路是，先生成一个初始点，后面的都可以续上，但是这个初始点要在内部 重新进行赋值，因此需要一个标记
+
+            while(prob!=null){
+
+                IntList a = new IntList(prob.first,null);
+                if(count ==0){mem.first = a.first;
+                    mem.rest = a.rest;
+                prob = prob.rest;}
+                else {
+
+                    mem.rest = a;
+                    mem = mem.rest;
+                    prob = prob.rest;
+                }
+                count += 1;
+            }
+
+            IntList meme = temp;
+            while (meme.rest!=null){
+                meme = meme.rest;
+            }
+            meme.rest  = B;
+            return temp;
+
+
+        }
+
     }
 
 
