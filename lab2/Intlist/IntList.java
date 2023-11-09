@@ -81,10 +81,10 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        if(B==null){
-            return null;
-        }
-        if(A==null)return B;
+        if(A==null&&B==null){return null;} else if (A == null) {
+            return B;
+        } else if (B == null) {
+            return A;}
         else{
             IntList mem = A;
             while(A.rest!=null){
@@ -101,10 +101,11 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        if(B==null){
-            return IntList.of(1,2,3);
-        }
-        else{
+        if(A==null&&B==null){return null;} else if (A == null) {
+            return B;
+        } else if (B == null) {
+            return A;
+        } else{
 //           我们要生成一个完全新的mem，跟A进行copy
 
             IntList prob = A;
@@ -127,7 +128,7 @@ public class IntList {
                 }
                 count += 1;
             }
-            if(A==null)return IntList.of(1,2,3);
+
             IntList meme = temp;
             while (meme.rest!=null){
                 meme = meme.rest;
