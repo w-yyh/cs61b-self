@@ -1,5 +1,5 @@
 public class ArrayDeque<T> {
-    public static final int MINARRAYLENGTH = 16;
+    private static final int MINARRAYLENGTH = 16;
     private int size = 0;
     private T[] arr;
     private int capacity = 8;
@@ -107,15 +107,16 @@ public class ArrayDeque<T> {
         size -= 1;
         if (rear - 1 < 0) {
             rear = capacity - 1;
+        } else {
+            rear = rear - 1;
         }
-        T temp = arr[rear - 1];
-        rear -= 1;
+        T temp = arr[rear];
         checkR();
         return temp;
 
     }
     public void printDeque() {
-        if (front > rear) {
+        if (front >= rear) {
             int temp = capacity + rear;
             for (int i = front + 1; i < temp; i++) {
                 System.out.println(arr[i % capacity]);
