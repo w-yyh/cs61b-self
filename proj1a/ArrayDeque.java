@@ -95,7 +95,7 @@ public class ArrayDeque<T> {
             return null;
         }
         size -= 1;
-        T temp = arr[(front + 1)%capacity];
+        T temp = arr[(front + 1) % capacity];
         front += 1;
         checkR();
         return temp;
