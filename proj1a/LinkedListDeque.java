@@ -62,6 +62,10 @@ public class LinkedListDeque<T> {
         if(sentinel.next == sentinel)return null;
         T temp = sentinel.next.item;
         sentinel.next = sentinel.next.next;
+        sentinel.next.prev = sentinel;
+
+
+        //不仅要处理sentinel与node之间的关系，同时还要处理node之间的关系
         //注意，这里有一个点是，如果deque里面只有一个值，那么不仅要改变sentinel的next，同时要改变previous
         if(size == 1)sentinel.prev = sentinel;
         size -= 1;
@@ -72,6 +76,7 @@ public class LinkedListDeque<T> {
         if (sentinel.prev == sentinel)return null;
         T temp = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
+        sentinel.prev.next = sentinel;
         if(size == 1)sentinel.next = sentinel;
         size -= 1;
         return temp;

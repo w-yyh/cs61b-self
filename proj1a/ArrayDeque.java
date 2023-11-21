@@ -1,4 +1,5 @@
 public class ArrayDeque<T> {
+    public static final int MINARRAYLENGTH = 16;
     private int size = 0;
     private T[] arr;
     private int capacity = 8;
@@ -21,32 +22,32 @@ public class ArrayDeque<T> {
         rear = 0;
     }
     private void resize(String n) {
-        if (n == "up") {
+        if (n.equals("up")) {
             //新数组的初始化
-            int Newcapacity = capacity * 2;
-            resize_helper(Newcapacity);
-        } else if (n == "down") {
-            int Newcapacity = capacity / 2;
-            resize_helper(Newcapacity);
+            int newCapacity = capacity * 2;
+            resizeHelper(newCapacity);
+        } else if (n.equals("down")) {
+            int newCapacity = capacity / 2;
+            resizeHelper(newCapacity);
         }
 
 
     }
-    private void resize_helper(int Newcapacity) {
-        T[] newarrary = (T[]) new Object[Newcapacity];
+    private void resizeHelper(int newCapacity) {
+        T[] newarrary = (T[]) new Object[newCapacity];
         if (front > rear) {
             int diff = capacity - front;
             //在将原数组复制到新的数组中
-            System.arraycopy(arr, front + 1, newarrary, 0, diff - 1 );
-            System.arraycopy(arr,0,newarrary,diff - 1,capacity - diff + 1);
+            System.arraycopy(arr, front + 1, newarrary, 0, diff - 1);
+            System.arraycopy(arr, 0, newarrary, diff - 1, capacity - diff + 1);
         } else {
-            System.arraycopy(arr,front + 1, newarrary, 0,size);
+            System.arraycopy(arr, front + 1, newarrary, 0, size);
         }
         //对齐rear与front
         rear = size;
-        front = Newcapacity - 1;
+        front = newCapacity - 1;
         //更新数据
-        capacity = Newcapacity;
+        capacity = newCapacity;
         arr = newarrary;
 
     }
@@ -72,11 +73,7 @@ public class ArrayDeque<T> {
     }
 
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return size == 0;
     }
     public int size() {
         return size;
@@ -88,7 +85,7 @@ public class ArrayDeque<T> {
     private void checkR() {
         double R = (double) size / capacity;
         check();
-        if (R < 0.25 && capacity > 16) {
+        if (R < 0.25 && capacity > MINARRAYLENGTH) {
             resize("down");
         }
     }

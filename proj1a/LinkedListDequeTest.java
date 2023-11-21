@@ -1,95 +1,97 @@
-/** Performs some basic linked list tests. */
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class LinkedListDequeTest {
-	
-	/* Utility method for printing out empty checks. */
-	public static boolean checkEmpty(boolean expected, boolean actual) {
-		if (expected != actual) {
-			System.out.println("isEmpty() returned " + actual + ", but expected: " + expected);
-			return false;
-		}
-		return true;
+	private LinkedListDeque<Integer> deque;
+
+	@Before
+	public void setUp() {
+		deque = new LinkedListDeque<>();
 	}
 
-	/* Utility method for printing out empty checks. */
-	public static boolean checkSize(int expected, int actual) {
-		if (expected != actual) {
-			System.out.println("size() returned " + actual + ", but expected: " + expected);
-			return false;
-		}
-		return true;
+	@Test
+	public void testIsEmpty_NewDeque() {
+		assertTrue(deque.isEmpty());
 	}
 
-	/* Prints a nice message based on whether a test passed. 
-	 * The \n means newline. */
-	public static void printTestStatus(boolean passed) {
-		if (passed) {
-			System.out.println("Test passed!\n");
-		} else {
-			System.out.println("Test failed!\n");
-		}
+	@Test
+	public void testAddFirst() {
+		deque.addFirst(1);
+		assertFalse(deque.isEmpty());
+		assertEquals(1, deque.size());
+		assertEquals(Integer.valueOf(1), deque.removeFirst());
 	}
 
-	/** Adds a few things to the list, checking isEmpty() and size() are correct, 
-	  * finally printing the results. 
-	  *
-	  * && is the "and" operation. */
-
-	public static void addIsEmptySizeTest() {
-		System.out.println("Running add/isEmpty/Size test.");
-		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
-
-		boolean passed = checkEmpty(true, lld1.isEmpty());
-
-		lld1.addFirst("front");
-
-		// The && operator is the same as "and" in Python.
-		// It's a binary operator that returns true if both arguments true, and false otherwise.
-		passed = checkSize(1, lld1.size()) && passed;
-		passed = checkEmpty(false, lld1.isEmpty()) && passed;
-
-		lld1.addLast("middle");
-		passed = checkSize(2, lld1.size()) && passed;
-
-		lld1.addLast("back");
-		passed = checkSize(3, lld1.size()) && passed;
-
-		System.out.println("Printing out deque: ");
-		lld1.printDeque();
-
-		printTestStatus(passed);
+	@Test
+	public void testAddLast() {
+		deque.addLast(1);
+		assertFalse(deque.isEmpty());
+		assertEquals(1, deque.size());
+		assertEquals(Integer.valueOf(1), deque.removeLast());
 	}
 
-	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
-	public static void addRemoveTest() {
-
-		System.out.println("Running add/remove test.");
-
-		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
-		// should be empty 
-		boolean passed = checkEmpty(true, lld1.isEmpty());
-
-		lld1.addFirst(10);
-		// should not be empty 
-		passed = checkEmpty(false, lld1.isEmpty()) && passed;
-
-		lld1.removeFirst();
-		// should be empty 
-		passed = checkEmpty(true, lld1.isEmpty()) && passed;
-
-		printTestStatus(passed);
-	}
-	public static void testget() {
-		LinkedListDeque<String> lld2 = new LinkedListDeque<String>();
-		lld2.addFirst("newfront");
-		lld2.addFirst("nnewfront1");
-		lld2.printDeque();
-		System.out.println(lld2.getRecrsive(1));
+	@Test
+	public void testSize() {
+		assertEquals(0, deque.size());
+		deque.addFirst(1);
+		assertEquals(1, deque.size());
+		deque.addLast(2);
+		assertEquals(2, deque.size());
 	}
 
-	public static void main(String[] args) {
-		/*System.out.println("Running tests.\n");
-		addIsEmptySizeTest();
-		addRemoveTest();*/
-		testget();
+	@Test
+	public void testRemoveFirst() {
+		deque.addFirst(1);
+		deque.addLast(2);
+		assertEquals(Integer.valueOf(1), deque.removeFirst());
+		assertEquals(1, deque.size());
 	}
-} 
+
+	@Test
+	public void testRemoveLast() {
+		deque.addFirst(1);
+		deque.addLast(2);
+		assertEquals(Integer.valueOf(2), deque.removeLast());
+		assertEquals(1, deque.size());
+	}
+
+	@Test
+	public void testGet() {
+		deque.addFirst(1);
+		deque.addLast(2);
+		assertEquals(Integer.valueOf(1), deque.get(0));
+		assertEquals(Integer.valueOf(2), deque.get(1));
+	}
+
+	@Test
+	public void testGetRecursive() {
+		deque.addFirst(1);
+		deque.addLast(2);
+		assertEquals(Integer.valueOf(1), deque.getRecrsive(0));
+		assertEquals(Integer.valueOf(2), deque.getRecrsive(1));
+	}
+
+	@Test
+	public void testRemoveFromEmpty() {
+		assertNull(deque.removeFirst());
+		assertNull(deque.removeLast());
+	}
+
+	@Test
+	public void testGetFromEmpty() {
+		assertNull(deque.get(0));
+		assertNull(deque.getRecrsive(0));
+	}
+
+	@Test
+	public void testAddRemoveCombinations() {
+		deque.addFirst(1);
+		deque.addLast(2);
+		deque.addFirst(3);
+		assertEquals(Integer.valueOf(3), deque.removeFirst());
+		assertEquals(Integer.valueOf(2), deque.removeLast());
+		assertEquals(Integer.valueOf(1), deque.removeFirst());
+		assertTrue(deque.isEmpty());
+	}
+}
