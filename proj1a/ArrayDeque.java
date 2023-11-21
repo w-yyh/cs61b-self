@@ -35,7 +35,7 @@ public class ArrayDeque<T> {
     }
     private void resizeHelper(int newCapacity) {
         T[] newarrary = (T[]) new Object[newCapacity];
-        if (front > rear || front + 1 == rear || rear + 1 == front) {
+        if (front >= rear || front + 1 == rear || rear + 1 == front) {
             int diff = capacity - front;
             //在将原数组复制到新的数组中
             System.arraycopy(arr, front + 1, newarrary, 0, diff - 1);
