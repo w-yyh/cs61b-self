@@ -68,8 +68,8 @@ public class LinkedListDequeTest {
 	public void testGetRecursive() {
 		deque.addFirst(1);
 		deque.addLast(2);
-		assertEquals(Integer.valueOf(1), deque.getRecrsive(0));
-		assertEquals(Integer.valueOf(2), deque.getRecrsive(1));
+		assertEquals(Integer.valueOf(1), deque.getRecursive(0));
+		assertEquals(Integer.valueOf(2), deque.getRecursive(1));
 	}
 
 	@Test
@@ -81,7 +81,7 @@ public class LinkedListDequeTest {
 	@Test
 	public void testGetFromEmpty() {
 		assertNull(deque.get(0));
-		assertNull(deque.getRecrsive(0));
+		assertNull(deque.getRecursive(0));
 	}
 
 	@Test

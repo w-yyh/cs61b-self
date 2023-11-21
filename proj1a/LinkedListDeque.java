@@ -38,7 +38,7 @@ public class LinkedListDeque<T> {
 
     public void printDeque() {
         Tnode temp = sentinel.next;
-        while(temp != sentinel) {
+        while (temp != sentinel) {
             System.out.println(temp.item);
             temp = temp.next;
         }
@@ -46,11 +46,7 @@ public class LinkedListDeque<T> {
     }
 
     public boolean isEmpty() {
-        if (sentinel.next == sentinel && sentinel.prev == sentinel) {
-            return true;
-        } else {
-            return false;
-        }
+        return sentinel.next == sentinel && sentinel.prev == sentinel;
     }
 
     public int size() {
@@ -59,7 +55,9 @@ public class LinkedListDeque<T> {
 
     public T removeFirst() {
         //先检测是否真的存在可以被移除的值
-        if(sentinel.next == sentinel)return null;
+        if (sentinel.next == sentinel) {
+            return null;
+        }
         T temp = sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
@@ -67,26 +65,34 @@ public class LinkedListDeque<T> {
 
         //不仅要处理sentinel与node之间的关系，同时还要处理node之间的关系
         //注意，这里有一个点是，如果deque里面只有一个值，那么不仅要改变sentinel的next，同时要改变previous
-        if(size == 1)sentinel.prev = sentinel;
+        if (size == 1) {
+            sentinel.prev = sentinel;
+        }
         size -= 1;
         return temp;
     }
 
     public T removeLast() {
-        if (sentinel.prev == sentinel)return null;
+        if (sentinel.prev == sentinel) {
+            return null;
+        }
         T temp = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.next = sentinel;
-        if(size == 1)sentinel.next = sentinel;
+        if (size == 1) {
+            sentinel.next = sentinel;
+        }
         size -= 1;
         return temp;
     }
 
     public T get(int index) {
-        if(index > size - 1)return null;
+        if (index > size - 1) {
+            return null;
+        }
         Tnode needle = sentinel.next;
         int count = 0;
-        while(count != index) {
+        while (count != index) {
             needle = needle.next;
             count += 1;
         }
@@ -94,14 +100,18 @@ public class LinkedListDeque<T> {
 
     }
 
-    public T getRecrsive(int index) {
-        if(index > size - 1)return null;
+    public T getRecursive(int index) {
+        if (index > size - 1) {
+            return null;
+        }
         Tnode needle = sentinel.next;
         return helperget(index, needle);
 
     }
     private T helperget(int index, Tnode temp) {
-        if(index == 0)return temp.item;
+        if (index == 0) {
+            return temp.item;
+        }
         return helperget(index - 1, temp.next);
     }
 

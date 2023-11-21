@@ -44,7 +44,7 @@ public class ArrayDeque<T> {
             System.arraycopy(arr, front + 1, newarrary, 0, size);
         }
         //对齐rear与front
-        rear = size;
+        rear = size - 1;
         front = newCapacity - 1;
         //更新数据
         capacity = newCapacity;
@@ -80,7 +80,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        return arr[index];
+        return arr[(front + 1 + index) % capacity];
     }
     private void checkR() {
         double R = (double) size / capacity;
@@ -91,15 +91,24 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         size -= 1;
-        T temp = arr[front];
+        T temp = arr[(front + 1)%capacity];
         front += 1;
         checkR();
         return temp;
     }
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         size -= 1;
-        T temp = arr[front];
+        if (rear - 1 < 0) {
+            rear = capacity - 1;
+        }
+        T temp = arr[rear - 1];
         rear -= 1;
         checkR();
         return temp;
