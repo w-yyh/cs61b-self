@@ -1,9 +1,7 @@
-import java.util.Deque;
-
-public class ArrayDeque<T>  {
+public class ArrayDeque<Item> implements Deque<Item> {
     private static final int MINARRAYLENGTH = 16;
     private int size = 0;
-    private T[] arr;
+    private Item[] arr;
     private int capacity = 8;
     private int front;
     private int rear;
@@ -19,7 +17,7 @@ public class ArrayDeque<T>  {
     }
 
     public ArrayDeque() {
-        arr = (T[]) new Object[8];
+        arr = (Item[]) new Object[8];
         front = 7; //初始化时分别位于尾部和头部
         rear = 0;
     }
@@ -36,7 +34,7 @@ public class ArrayDeque<T>  {
 
     }
     private void resizeHelper(int newCapacity) {
-        T[] newarrary = (T[]) new Object[newCapacity];
+        Item[] newarrary = (Item[]) new Object[newCapacity];
         if (front >= rear || front + 1 == rear || rear + 1 == front) {
             int diff = capacity - front;
             //在将原数组复制到新的数组中
@@ -54,7 +52,7 @@ public class ArrayDeque<T>  {
 
     }
 
-    public void addFirst(T item) {
+    public void addFirst(Item item) {
         size += 1;
         if (size > capacity) {
             resize("up");
@@ -64,7 +62,7 @@ public class ArrayDeque<T>  {
         check();
     }
 
-    public void addLast(T item) {
+    public void addLast(Item item) {
         size += 1;
         if (size > capacity) {
             resize("up");
@@ -81,7 +79,7 @@ public class ArrayDeque<T>  {
         return size;
     }
 
-    public T get(int index) {
+    public Item get(int index) {
         return arr[(front + 1 + index) % capacity];
     }
     private void checkR() {
@@ -92,17 +90,17 @@ public class ArrayDeque<T>  {
         }
     }
 
-    public T removeFirst() {
+    public Item removeFirst() {
         if (size == 0) {
             return null;
         }
         size -= 1;
-        T temp = arr[(front + 1) % capacity];
+        Item temp = arr[(front + 1) % capacity];
         front += 1;
         checkR();
         return temp;
     }
-    public T removeLast() {
+    public Item removeLast() {
         if (size == 0) {
             return null;
         }
@@ -112,7 +110,7 @@ public class ArrayDeque<T>  {
         } else {
             rear = rear - 1;
         }
-        T temp = arr[rear];
+        Item temp = arr[rear];
         checkR();
         return temp;
 
