@@ -13,7 +13,7 @@ public class Palindrome {
         } else {
             int count = 0;
             for (int i = 0; i < word.length(); i++) {
-                if (word.charAt(i) == word.charAt(word.length() -1 - i)) {
+                if (word.charAt(i) == word.charAt(word.length() - 1 - i)) {
                     count += 1;
                 }
             }
@@ -29,7 +29,7 @@ public class Palindrome {
             if (word.length() % 2 == 1) { //当情况为奇数的时候
                 int temp = 0;
                 while (temp < (word.length() - 1) / 2) {
-                    if (!cc.equalChars(word.charAt(temp),word.charAt(word.length() - 1 - temp))) {
+                    if (!cc.equalChars(word.charAt(temp), word.charAt(word.length() - 1 - temp))) {
                         return false;
                     }
                     temp += 1;
@@ -38,7 +38,7 @@ public class Palindrome {
             } else {
                 int temp = 0;
                 while (temp < word.length() / 2) {
-                    if (!cc.equalChars(word.charAt(temp),word.charAt(word.length() - 1 - temp))) {
+                    if (!cc.equalChars(word.charAt(temp), word.charAt(word.length() - 1 - temp))) {
                         return false;
                     }
                     temp += 1;

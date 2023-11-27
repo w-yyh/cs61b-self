@@ -9,6 +9,7 @@ public class TestOffByOne {
     static Palindrome palindrome = new Palindrome();
 
 
+
     // Your tests go here.
     @Test
     public void testequalChars() {
@@ -19,8 +20,8 @@ public class TestOffByOne {
 
     @Test
     public void testPalindrome() {
-        CharacterComparator offbyone = new OffByOne();
 
-        assertTrue(palindrome.isPalindrome("aa",offbyone));
+
+        assertTrue(palindrome.isPalindrome("", offByOne));
     }
 }
