@@ -16,12 +16,12 @@ public class TestOffByOne {
         assertTrue(offByOne.equalChars('a', 'b'));
         assertTrue(offByOne.equalChars('c', 'b'));
         assertFalse(offByOne.equalChars('b', 'b'));
+        assertFalse(offByOne.equalChars('a', 'a'));
+        assertFalse(offByOne.equalChars('a', 'e'));
+        assertFalse(offByOne.equalChars('z', 'a'));
+        assertTrue(offByOne.equalChars('a', 'b'));
+        assertTrue(offByOne.equalChars('&', '%'));
     }
 
-    @Test
-    public void testPalindrome() {
 
-
-        assertTrue(palindrome.isPalindrome("", offByOne));
-    }
 }
