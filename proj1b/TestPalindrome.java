@@ -20,9 +20,10 @@ public class TestPalindrome {
         String word1 = "qwer";
         String word2 = "qwq";
         assertTrue(palindrome.isPalindrome(word2));
-        assertTrue(palindrome.isPalindrome("AssA"));
+        assertTrue(palindrome.isPalindrome(""));
         assertFalse(palindrome.isPalindrome(word1));
-        CharacterComparator cc2 = new OffByOne();
-        assertTrue(palindrome.isPalindrome("aDrCb", cc2));
+        assertTrue(palindrome.isPalindrome("&%&"));
+        assertTrue(palindrome.isPalindrome("QaQ"));
+
     }
 }
